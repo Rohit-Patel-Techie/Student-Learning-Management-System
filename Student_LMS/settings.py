@@ -39,6 +39,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Student_LMS.urls'
+AUTH_USER_MODEL = 'accounts.User'
 
 TEMPLATES = [
     {
