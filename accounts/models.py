@@ -14,10 +14,10 @@ class User(AbstractUser) :
     roles = models.CharField(max_length = 15, choices = ROLE_CHOICES, default = STUDENT)
 
     def is_student(self) : 
-        return self.role == self.STUDENT
+        return self.roles == self.STUDENT
     
     def is_instructor(self) : 
-        return self.role == self.INSTRUCTOR
+        return self.roles == self.INSTRUCTOR
     
 #Student Profile
 class StudentProfile(models.Model) : 
