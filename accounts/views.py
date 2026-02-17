@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from .forms import SignupForm
 from .utils import get_dashboard_url
 from .mixins import StudentRequiredMixin, InstructorRequiredMixin
+from courses.services import get_instructor_courses
 
 #Sign View
 def signup_view(request) : 
@@ -38,4 +39,10 @@ class StudentDashboardView(LoginRequiredMixin, StudentRequiredMixin, TemplateVie
 #Instructor Dashboard
 class InstructorDashboardView(LoginRequiredMixin,InstructorRequiredMixin, TemplateView) : 
     template_name = 'accounts/instructor-dashboard.html'
+
+    """Fetching Instructor Creation Courses"""
+    def get_context_data(self, **kwargs) : 
+        context = super().get_context_data(**kwargs)
+        context["courses"] = get_instructor_courses(self.request.user)
+        return context
 

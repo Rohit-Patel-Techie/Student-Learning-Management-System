@@ -15,7 +15,7 @@ class Course(models.Model) :
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('pending', 'Pending'),
-        ('approved', 'Approved')
+        ('approved', 'Approved'),
         ('rejected', 'Rejected'),
     )
 
@@ -25,7 +25,7 @@ class Course(models.Model) :
     thumbnail = models.ImageField(upload_to = 'course_thumbnails/')
     instructor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, related_name = 'courses')
 
-    category = models.ForeignKey(Category, on_delete = models.SET_NULL, null = True, related_name = 'courses')
+    category = models.ForeignKey(Category, on_delete = models.PROTECT, related_name = 'courses')
 
     status = models.CharField(max_length= 20, choices = STATUS_CHOICES, default = 'draft')
 
