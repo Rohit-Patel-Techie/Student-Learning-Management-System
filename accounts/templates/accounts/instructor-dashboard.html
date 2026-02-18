@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instructor Dashboard</title>
 </head>
+
 <body>
-    <h1>Instructor Dashboard</h1>
+    <h1 style="align-items: center; background-color: brown; color : cornsilk; ">Instructor Dashboard</h1>
+
+    <h2>Welcome to the Dashboard, Mr/Mrs {{request.user}}</h2>
+
+    {% for course in courses %}
+    <div>
+        <img src="http://127.0.0.1:8000/media/{{course.thumbnail}}" alt="{{course.title}}" style="width: 200px;">
+        <h3> {{ course.title }}</h3>
+        <h3>{{ course.description }}</h3>
+        <h3>{{ course.category }}</h3>
+        <h3 style="color: green;">{{ course.status }}</h3>
+        <h3>{{ course.create_at }}</h3>
+
+       
+    
+      
+    </div>
+    {% endfor %}
+
 </body>
+
 </html>
