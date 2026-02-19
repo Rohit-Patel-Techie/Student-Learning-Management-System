@@ -11,6 +11,7 @@
     <h1 style="align-items: center; background-color: brown; color : cornsilk; ">Instructor Dashboard</h1>
 
     <h2>Welcome to the Dashboard, Mr/Mrs {{request.user}}</h2>
+    <a href="{% url 'course-creation-view'%}">Create Course</a>
 
     {% for course in courses %}
     <div>
@@ -20,9 +21,6 @@
         <h3>{{ course.category }}</h3>
         <h3 style="color: green;">{{ course.status }}</h3>
         <h3>{{ course.create_at }}</h3>
-
-       
-    
       
     </div>
     {% endfor %}

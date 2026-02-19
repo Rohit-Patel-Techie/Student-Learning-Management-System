@@ -40,3 +40,20 @@ class Course(models.Model) :
     def __str__(self) : 
         return self.title
 
+# Course Lesson
+class Lesson(models.Model) : 
+    course = models.ForeignKey(Course, on_delete = models.CASCADE, related_name = 'lessons')
+    title = models.CharField(max_length = 100)
+    content = models.FileField(upload_to = 'lesson_content/')
+    order = models.PositiveIntegerField()
+
+    created_at = models.DateTimeField(auto_now_add = True)
+
+    class Meta : 
+        ordering = ['order']
+        constraints = [
+            models.UniqueConstraint(fields = ['course', 'order'], name = 'unique_lesson_order_per_course')
+        ]
+    
+    def __str__(self) : 
+        return f"{self.course.title} - {self.title}"
