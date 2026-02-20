@@ -3,7 +3,7 @@ from django.urls import reverse
 from .forms import CourseForm, LessonForm
 from .models import Course, Category, Lesson
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from accounts.mixins import InstructorRequiredMixin
 
 #Course Creation View
@@ -34,3 +34,16 @@ class LessonCreateView(LoginRequiredMixin, InstructorRequiredMixin, CreateView) 
 
     def get_success_url(self):
         return reverse('instructor-dashboard')
+    
+class CourseDetailView(DetailView) : 
+    model = Course
+    template_name = 'courses/course_detail.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+
+class LessonDetailView(LoginRequiredMixin, DetailView) :
+    model = Lesson
+    template_name = 'courses/lesson_detail.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'

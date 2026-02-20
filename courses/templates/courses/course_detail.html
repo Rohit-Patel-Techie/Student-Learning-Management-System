@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail View</title>
+</head>
+
+<body>
+    <h1>Course Detail : {{course.title}}</h1>
+    <ul>
+        {% for lesson in course.lessons.all %}
+        <li>
+            {{lesson.order }} - {{lesson.title}}
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>

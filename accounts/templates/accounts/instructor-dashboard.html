@@ -11,7 +11,13 @@
     <h1 style="align-items: center; background-color: brown; color : cornsilk; ">Instructor Dashboard</h1>
 
     <h2>Welcome to the Dashboard, Mr/Mrs {{request.user}}</h2>
-    <a href="{% url 'course-creation-view'%}">Create Course</a>
+    <a href="{% url 'course-creation-view' %}">Create Course</a>
+    <a href="{% url 'course-lesson-create' %}">Create Lesson</a>
+    {% comment %}
+    <!-- <a href="{% url 'course-detail-view' course.slug %}">Detail Course</a> --> 
+    {%  endcomment %}
+
+    <h1>{% url 'course-lesson-create' %}</h1>
 
     {% for course in courses %}
     <div>
