@@ -12,13 +12,11 @@
 
     <h2>Welcome to the Dashboard, Mr/Mrs {{request.user}}</h2>
     <a href="{% url 'course-creation-view' %}">Create Course</a>
-    <a href="{% url 'course-lesson-create' %}">Create Lesson</a>
     {% comment %}
     <!-- <a href="{% url 'course-detail-view' course.slug %}">Detail Course</a> --> 
+    <!-- <a href="{% url 'lesson-detail-view' course.id %}">View Lesson</a> -->
     {%  endcomment %}
-
-    <h1>{% url 'course-lesson-create' %}</h1>
-
+    
     {% for course in courses %}
     <div>
         <img src="http://127.0.0.1:8000/media/{{course.thumbnail}}" alt="{{course.title}}" style="width: 200px;">
@@ -27,6 +25,8 @@
         <h3>{{ course.category }}</h3>
         <h3 style="color: green;">{{ course.status }}</h3>
         <h3>{{ course.create_at }}</h3>
+        <a href="{% url 'course-lesson-create' course.id %}">Add Lesson</a>
+        <a href="{% url 'course-detail-view' course.slug %}">View Detail Course</a>
       
     </div>
     {% endfor %}

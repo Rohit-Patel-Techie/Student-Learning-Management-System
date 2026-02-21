@@ -6,8 +6,9 @@
     <title>Lesson Create</title>
 </head>
 <body>
-    <h1>Lesson Create By Instructor : {{request.user}}</h1>
-    <form method="post">
+    <h1>Add Lesson To Course : <strong>{{ course.title }}</strong></h1>
+    <h1>Instructor : {{request.user}}</h1>
+    <form method="post" enctype = "multipart/form-data">
         {% csrf_token %}
         {{ form.as_p}}
         <button type="submit">Submit</button>

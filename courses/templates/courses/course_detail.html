@@ -9,13 +9,18 @@
 
 <body>
     <h1>Course Detail : {{course.title}}</h1>
-    <ul>
+    <table border="1">
+        <tr>
+            <th>Order</th>
+            <th>Lesson</th>
+        </tr>
         {% for lesson in course.lessons.all %}
-        <li>
-            {{lesson.order }} - {{lesson.title}}
-        </li>
+        <tr>
+            <td>{{lesson.order }}</td>
+            <td><a href="{% url 'lesson-detail-view' lesson.id %}">{{lesson.title}}</a></td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 
 </body>
 

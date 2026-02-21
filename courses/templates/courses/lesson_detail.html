@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson Detail </title>
 </head>
-<body>
-    <h1>Lesson : {{object.title}}</h1>
+    <body>
+        <h1>Lesson : {{object.title}}</h1>
 
-    <!-- For PDF -->
-    <a href="{{ object.content.url }}">Download PDF</a>
+        <!-- For PDF -->
+        <a href="{{ object.content.url }}">Download PDF</a>
 
-    <!-- For video -->
-    <video width="600" controls> <source src="{{object.content.url}}"></video> 
+        <!-- For video -->
+        <video width="600" controls> <source src="{{object.content.url}}"></video> 
 
-</body>
+    </body>
 </html>

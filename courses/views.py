@@ -27,13 +27,21 @@ class LessonCreateView(LoginRequiredMixin, InstructorRequiredMixin, CreateView) 
     form_class = LessonForm
     template_name = 'courses/lesson_create.html'
 
+    def get_course(self) : 
+        return get_object_or_404(Course, id = self.kwargs['course_id'], instructor = self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["course"] = self.get_course()
+        return context
+
     def form_valid(self, form) : 
-        course = get_object_or_404(Course, id = self.kwargs['course_id'], instructor = self.request.user)
-        form.instance.course = course
+        form.instance.course = self.get_course()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('instructor-dashboard')
+        print(self.get_course().slug)
+        return reverse('course-detail-view', kwargs = {'slug' : self.get_course().slug})
     
 class CourseDetailView(DetailView) : 
     model = Course
@@ -45,5 +53,3 @@ class CourseDetailView(DetailView) :
 class LessonDetailView(LoginRequiredMixin, DetailView) :
     model = Lesson
     template_name = 'courses/lesson_detail.html'
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
