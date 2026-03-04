@@ -7,5 +7,23 @@
 </head>
 <body>
     <h1>Student Dashboard</h1>
+    <h1>My Courses</h1>
+
+    {% if enrollment_courses %}
+    <div>
+        {% for course in enrollment_courses %}
+
+        <img src="{{ course.thumbnail.url}}" width="150px" alt="{{ course.title }}">
+        <h3>{{ course.title }}</h3>
+        <p>Instructor : {{ course.instructor.username }}</p>
+        <a href="{% url 'course-detail-view' course.slug %}">Continue Learning</a>
+
+        {% endfor %}
+    </div>
+    {% else %}
+    <div>
+        You are not enrolled in any courses yet.
+    </div>
+    {% endif %}
 </body>
 </html>

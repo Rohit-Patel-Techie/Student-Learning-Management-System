@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from .forms import SignupForm
 from .utils import get_dashboard_url
 from .mixins import StudentRequiredMixin, InstructorRequiredMixin
+from courses.models import Course
+from enrollments.models import Enrollment
 from courses.services import get_instructor_courses
 
 #Sign View
@@ -34,6 +36,22 @@ class RoleBasedLoginView(LoginView) :
 #Student Dashboard
 class StudentDashboardView(LoginRequiredMixin, StudentRequiredMixin, TemplateView) : 
     template_name = 'accounts/student-dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user = self.request.user
+
+        #Fetch Only Approved courses where student is actively enrolled
+        enrolled_courses = Course.objects.filter(
+            status = "approved",
+            enrollments__student = user,
+            enrollments__status = 'active'
+        ).select_related('instructor').distinct()
+
+        context['enrollment_courses'] = enrolled_courses
+        return context
+
 
 
 #Instructor Dashboard

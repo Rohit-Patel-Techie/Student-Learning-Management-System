@@ -24,7 +24,7 @@
 
     {% if user.is_authenticated and not user.is_instructor %}
         {% if is_enrolled %}
-            <p>Your are Enrolled.</p>
+            <p>You are Enrolled.</p>
             
         {% else %}
                 <a href="{% url 'course-enroll' course.id %}">Enroll Now</a>
