@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'courses',
     'enrollments',
+    'progress',
 ]
 
 MIDDLEWARE = [

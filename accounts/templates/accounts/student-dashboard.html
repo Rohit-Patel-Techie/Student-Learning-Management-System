@@ -1,29 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
 </head>
+
 <body>
+
     <h1>Student Dashboard</h1>
-    <h1>My Courses</h1>
+    <h2>My Courses</h2>
 
-    {% if enrollment_courses %}
+    {% if course_progress_data %}
     <div>
-        {% for course in enrollment_courses %}
 
-        <img src="{{ course.thumbnail.url}}" width="150px" alt="{{ course.title }}">
-        <h3>{{ course.title }}</h3>
-        <p>Instructor : {{ course.instructor.username }}</p>
-        <a href="{% url 'course-detail-view' course.slug %}">Continue Learning</a>
+        {% for item in course_progress_data %}
+
+        <div style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
+
+            <img src="{{ item.course.thumbnail.url }}" width="150px">
+
+            <h3>{{ item.course.title }}</h3>
+
+            <p>Instructor: {{ item.course.instructor.username }}</p>
+
+            <!-- 🚀 Progress Bar -->
+            <div style="background: #eee; width: 200px; height: 20px;">
+                <div style="background: green; width: {{ item.progress }}%; height: 100%;">
+                </div>
+            </div>
+
+            <p>{{ item.progress }}% Completed</p>
+
+            <a href="{% url 'course-detail-view' item.course.slug %}">
+                Continue Learning
+            </a>
+
+        </div>
 
         {% endfor %}
+
     </div>
+
     {% else %}
     <div>
         You are not enrolled in any courses yet.
     </div>
     {% endif %}
+
 </body>
+
 </html>

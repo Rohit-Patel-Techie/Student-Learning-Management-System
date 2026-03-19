@@ -11,6 +11,7 @@ from .mixins import StudentRequiredMixin, InstructorRequiredMixin
 from courses.models import Course
 from enrollments.models import Enrollment
 from courses.services import get_instructor_courses
+from progress.services import get_course_progress
 
 #Sign View
 def signup_view(request) : 
@@ -42,6 +43,7 @@ class StudentDashboardView(LoginRequiredMixin, StudentRequiredMixin, TemplateVie
 
         user = self.request.user
 
+
         #Fetch Only Approved courses where student is actively enrolled
         enrolled_courses = Course.objects.filter(
             status = "approved",
@@ -49,7 +51,22 @@ class StudentDashboardView(LoginRequiredMixin, StudentRequiredMixin, TemplateVie
             enrollments__status = 'active'
         ).select_related('instructor').distinct()
 
-        context['enrollment_courses'] = enrolled_courses
+        context['enrolled_courses'] = enrolled_courses
+        
+        #Get Total Completion Course Percentage 
+        courses = enrolled_courses
+        course_progress_data = []
+
+        for course in courses : 
+            progress = get_course_progress(course,user)
+
+            course_progress_data.append({
+                'course' : course,
+                'progress' : progress
+            })
+
+        context["course_progress_data"] = course_progress_data
+
         return context
 
 
