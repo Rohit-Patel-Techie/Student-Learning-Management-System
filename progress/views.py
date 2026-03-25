@@ -15,7 +15,7 @@ def mark_lesson_complete(request, lesson_id) :
         course = lesson.course,
         status = "active"
     ).exists():
-        return redirect('') # Will Create futher
+        return redirect('') # Will Create further
     
     progress, created = LessonProgress.objects.get_or_create(
         student = request.user,

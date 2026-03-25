@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name = "accounts-app-urls"),
     path('courses/', include('courses.urls'), name = "courses-app-urls"),
     path('enrollments/', include('enrollments.urls'), name = "enrollments-app-urls"),
+    path('progress/', include('progress.urls'), name = "progress-lesson-calculation"),
 
 ]
 

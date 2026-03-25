@@ -12,6 +12,8 @@ def get_course_progress(course, user) :
     if total_lesson == 0 : 
         return 0
     
-    return ((completed_lesson / total_lesson) * 100)
+    progress = ((completed_lesson / total_lesson) * 100)
+
+    return round(progress,2)
 
     

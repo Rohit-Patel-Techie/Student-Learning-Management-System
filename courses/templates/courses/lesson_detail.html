@@ -8,6 +8,9 @@
     <body>
         <h1>Lesson : {{object.title}}</h1>
 
+        <!-- Mark As Complete -->
+         <a href="{% url 'mark-lesson-complete' object.id %}" style="background-color: burlywood; color: black ;">Mark as Complete</a><br>
+
         <!-- For PDF -->
         <a href="{{ object.content.url }}">Download PDF</a>
 
