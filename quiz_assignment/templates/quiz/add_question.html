@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student LMS : Question + Answers</title>
+</head>
+
+<body>
+    <h2>Add Question to {{ quiz.title }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <h3>Question</h3>
+        {{ q_form.as_p }}
+
+        <h3>Answers (Select correct one)</h3>
+        {{ formset.management_form }}
+
+        {% for form in formset %}
+        {{ form.as_p }}
+        <hr>
+        {% endfor %}
+
+        <button type="submit">Add Question</button>
+    </form>
+
+    <a href="{% url 'instructor-dashboard' %}">Finish</a>
+</body>
+
+</html>

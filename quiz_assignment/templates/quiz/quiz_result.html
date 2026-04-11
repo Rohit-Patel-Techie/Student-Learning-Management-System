@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student : LMS</title>
+</head>
+
+<body>
+    <h2>{{ quiz.title }} - Result</h2>
+
+    <p><strong>Score:</strong> {{ score }}%</p>
+    <p><strong>Correct Answers:</strong> {{ correct }} / {{ total }}</p>
+
+    {% if score == 100 %}
+    <p style="color: green;">Excellent! 🎉</p>
+    {% elif score >= 50 %}
+    <p style="color: orange;">Good Job 👍</p>
+    {% else %}
+    <p style="color: red;">Try Again ❌</p>
+    {% endif %}
+
+    <a href="/">Back to Dashboard</a>
+</body>
+
+</html>

@@ -10,7 +10,7 @@ urlpatterns = [
     path('courses/', include('courses.urls'), name = "courses-app-urls"),
     path('enrollments/', include('enrollments.urls'), name = "enrollments-app-urls"),
     path('progress/', include('progress.urls'), name = "progress-lesson-calculation"),
-
+    path('quiz/', include('quiz_assignment.urls'), name = "quiz-assignment-lesson"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student : LMS </title>
+</head>
+
+<body>
+    <h2>{{ object.title }}</h2>
+
+    <form method="POST" action="{% url 'submit-quiz' object.id %}">
+        {% csrf_token %}
+
+        {% for q in object.questions.all %}
+        <p><strong>{{ q.question_text }}</strong></p>
+
+        {% for ans in q.answers.all %}
+        <label>
+            <input type="radio" name="question_{{ q.id }}" value="{{ ans.id }}">
+            {{ ans.answer_text }}
+        </label><br>
+        {% endfor %}
+        <hr>
+        {% endfor %}
+
+        <button type="submit">Submit Quiz</button>
+    </form>
+</body>
+
+</html>

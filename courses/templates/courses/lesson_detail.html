@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson Detail </title>
 </head>
-    <body>
-        <h1>Lesson : {{object.title}}</h1>
 
-        <!-- Mark As Complete -->
-         <a href="{% url 'mark-lesson-complete' object.id %}" style="background-color: burlywood; color: black ;">Mark as Complete</a><br>
+<body>
+    <h1>Lesson : {{object.title}}</h1>
 
-        <!-- For PDF -->
-        <a href="{{ object.content.url }}">Download PDF</a>
+    <!-- Mark As Complete -->
+    <a href="{% url 'mark-lesson-complete' object.id %}" style="background-color: burlywood; color: black ;">Mark as
+        Complete</a><br>
 
-        <!-- For video -->
-        <video width="600" controls> <source src="{{object.content.url}}"></video> 
+    <!-- For PDF -->
+    <a href="{{ object.content.url }}">Download PDF</a>
 
-    </body>
+    <!-- For video -->
+    <video width="600" controls>
+        <source src="{{object.content.url}}">
+    </video>
+
+    <a href="{% url 'quiz-create' lesson.id %}">
+        Create Quiz
+    </a>
+    <!-- Check -->
+    <a href="{% url 'quiz-detail' lesson.id %}">
+        Attempt Quiz
+    </a>
+
+
+
+</body>
+
 </html>
